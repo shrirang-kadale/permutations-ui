@@ -20,14 +20,14 @@
   <button class="button" (click)="getAll()" [disabled]="userRole!=ADMIN">Get all permutations</button>
 </div>
 
+<div *ngIf = 'savedPermutations != null'>
+  {{savedPermutations | json}}
+</div>
 
-<h2>My Heroes</h2>
-<ul class="heroes">
-  <li *ngFor="let permutation of savedPermutations">
-    {{permutation.inputString}}
-  </li>
-</ul>
+<div *ngIf = 'errorResponse != null'>
+  {{errorResponse | json}}
+</div>
 
-{{savedPermutations | json}}
-
-{{getPermutations | json}}
+<div *ngIf = 'getPermutations != null'>
+  {{getPermutations | json}}
+</div>

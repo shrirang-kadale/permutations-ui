@@ -12,6 +12,7 @@ export class CalculatePermutationsComponent implements OnInit {
   userRole: string;
   savedPermutations: any;
   getPermutations: any;
+  errorResponse: any;
 
 
   constructor(private permutationService:PermutationService) { }
@@ -25,8 +26,12 @@ export class CalculatePermutationsComponent implements OnInit {
     this.permutationService.checkPermutations(this.userInputs)
 		  .subscribe((data)=> {
         this.savedPermutations = data;
-        console.log("data is: "+data)
-		  });
+        this.getPermutations = null;
+		  },
+      error => {
+        this.errorResponse = error.error;
+      }
+      );
 
   }
 
@@ -34,9 +39,13 @@ export class CalculatePermutationsComponent implements OnInit {
     console.log("Get all is: ")
     this.permutationService.getAllPermutations()
 		  .subscribe((data)=> {
-        this.getPermutations = data
-        console.log("data is: "+data)
-		  });
+        this.getPermutations = data;
+        this.savedPermutations = null;
+      },
+      error => {
+        this.errorResponse = error.error;
+      }
+      );
   }
 
 }
