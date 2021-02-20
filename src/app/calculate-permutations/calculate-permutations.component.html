@@ -1,0 +1,33 @@
+<div class="container">
+  <br>
+  <form #f="ngForm" (ngSubmit)="submitForm(f)">
+    <div class="form-group">
+      <label for="input1">Enter Input 1: </label>
+      <input type="text" name="input1" class="form-control" required [(ngModel)]="userInputs.input1" />
+    </div><br>
+    <div class="form-group">
+      <label for="input2">Enter Input 2: </label>
+      <input type="text" name="input2" class="form-control" required [(ngModel)]="userInputs.input2" />
+    </div><br>
+    <div class="form-group">
+      <label for="input3">Enter Input 3: </label>
+      <input type="text" name="input3" class="form-control" [(ngModel)]="userInputs.input3" />
+    </div>
+    <br>
+    <button type="reset" class="btn btn-success" (click)="f.reset()">Reset</button>&nbsp;&nbsp;
+    <button type="submit" [disabled]="!f.valid" class="btn btn-success">Submit</button>&nbsp;&nbsp;
+  </form>
+  <button class="button" (click)="getAll()" [disabled]="userRole!=ADMIN">Get all permutations</button>
+</div>
+
+
+<h2>My Heroes</h2>
+<ul class="heroes">
+  <li *ngFor="let permutation of savedPermutations">
+    {{permutation.inputString}}
+  </li>
+</ul>
+
+{{savedPermutations | json}}
+
+{{getPermutations | json}}
